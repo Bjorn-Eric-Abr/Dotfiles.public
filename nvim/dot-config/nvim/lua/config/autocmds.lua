@@ -1,8 +1,7 @@
-local api      = vim.api
-local fn       = vim.fn
-local alpha    = require("alpha")
-local nvimtree = require("nvim-tree.api")
-  
+local api = vim.api
+local fn = vim.fn
+local alpha = require("alpha")
+
 api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
@@ -16,8 +15,11 @@ api.nvim_create_autocmd("VimEnter", {
         local first = fn.argv(0)
         if argc == 1 and fn.isdirectory(first) == 1 then
             -- case: `nvim some/dir`
-            vim.cmd.cd(first)    -- cd into the directory
-            nvimtree.tree.open() -- open the tree
+            vim.cmd.cd(first) -- cd into the directory
+
+            -- Open neo-tree instead of nvim-tree
+            vim.cmd("Neotree")
+
             -- now delete the buffer that nvim auto‐opened for the dir
             local dir_buf = fn.bufnr(first)
             if dir_buf ~= -1 then
