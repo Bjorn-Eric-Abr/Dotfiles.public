@@ -9,21 +9,12 @@ return {
         "MunifTanjim/nui.nvim",
     },
     keys = {
-        { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
-        { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)",      remap = true },
         {
-            "<leader>ge",
+            "<leader>e",
             function()
-                require("neo-tree.command").execute({ source = "git_status", toggle = true })
+                require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
             end,
-            desc = "Git Explorer",
-        },
-        {
-            "<leader>eb",
-            function()
-                require("neo-tree.command").execute({ source = "buffers", toggle = true })
-            end,
-            desc = "Buffer Explorer",
+            desc = "File Explorer",
         },
     },
     deactivate = function()
